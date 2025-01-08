@@ -42,7 +42,7 @@ def generate_ab_test_data(
     )
     
     # Time spent on product page in seconds (some distribution)
-    # Assume Treatment might slightly increase time on page.
+    # Assuming Treatment might slightly increase time on page.
     time_spent = []
     for g in groups:
         if g == 'A':
@@ -57,7 +57,7 @@ def generate_ab_test_data(
     # Simulate "Add to Cart" event
     # For Control group: use control_cr for conversion
     # For Treatment group: use treatment_cr
-    # You can assume that "conversion" in an e-commerce context is "Purchase" or "Add to Cart".
+    # Assuming that "conversion" in an e-commerce context is "Purchase" or "Add to Cart".
     # Let's say 'purchase' is the ultimate conversion.
     
     add_to_cart = np.zeros(n_users, dtype=int)
