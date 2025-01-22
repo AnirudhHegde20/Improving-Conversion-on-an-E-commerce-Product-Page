@@ -1,8 +1,17 @@
+"""
+Below is a Python script to generate a synthetic dataset for your A/B testing scenario. This dataset simulates:
+• Users randomly assigned to Control (A) or Treatment (B).
+• Fields such as region, device_type, time_spent_seconds, added_to_cart, and purchase.
+• A mild difference in baseline conversion rates between Control and Treatment.
+"""
+
+
+
 import numpy as np
 import pandas as pd
 
 def generate_ab_test_data(
-    n_users=2000,
+    n_users=6400,
     control_cr=0.08,   # Baseline conversion rate for Control
     treatment_cr=0.10, # Conversion rate for Treatment
     seed=42
