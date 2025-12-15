@@ -1,24 +1,20 @@
 import pandas as pd
 
-def conversion_rate(df: pd.DataFrame) -> float:
-    return df["converted"].mean()
+def rate(series: pd.Series) -> float:
+    return float(series.mean()) if len(series) else 0.0
 
-def bounce_rate(df: pd.DataFrame) -> float:
-    if "bounce" not in df.columns:
-        return float("nan")
-    return df["bounce"].mean()
-
-def aov(df: pd.DataFrame) -> float:
-    # AOV among converted purchases
-    if "order_value" not in df.columns:
-        return float("nan")
-    purchases = df[df["converted"] == 1]
-    if len(purchases) == 0:
-        return 0.0
-    return purchases["order_value"].mean()
+def purchase_rate(df: pd.DataFrame) -> float:
+    return rate(df["purchase"])
 
 def add_to_cart_rate(df: pd.DataFrame) -> float:
-    # Optional, if you have add_to_cart column (0/1)
-    if "add_to_cart" not in df.columns:
+    return rate(df["added_to_cart"])
+
+def avg_time_spent(df: pd.DataFrame) -> float:
+    return float(df["time_spent_seconds"].mean()) if len(df) else 0.0
+def aov_from_data(df: pd.DataFrame) -> float:
+    if "order_value" not in df.columns:
         return float("nan")
-    return df["add_to_cart"].mean()
+    purchases = df[df["purchase"] == 1]
+    if len(purchases) == 0:
+        return 0.0
+    return float(purchases["order_value"].mean())
